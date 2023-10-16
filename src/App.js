@@ -26,6 +26,9 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => { return {...card, id: Math.random()} });
 
+    setChoiceOne(null);
+    setChoiceTwo(null);
+
     setCards(shuffledCards);
     setTurns(0);
   }
@@ -58,7 +61,9 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
-  console.log(cards);
+  useEffect(() => {
+    shuffleCards();
+  }, [])
 
   // reset turn
   const resetTurn = () => {
@@ -82,6 +87,8 @@ function App() {
                       disabled={isDisabled}/>
         ))}
       </div>
+
+      <h4>Number of Turns: {turns}</h4>
     </div>
   )
 }
